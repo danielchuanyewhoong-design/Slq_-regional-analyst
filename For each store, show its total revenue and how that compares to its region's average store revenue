@@ -1,0 +1,17 @@
+WITH store_rev AS ( 
+    SELECT st.store_name, st.store_id, r.region_name, SUM(sl.quantity*p.unit_price) AS revenue 
+    FROM sales sl 
+    JOIN stores st ON st.store_id = sl.store_id 
+    JOIN regions r ON r.region_id = st.region_id 
+    JOIN products p ON p.product_id = sl.product_id 
+    GROUP BY st.store_id, st.store_name, r.region_name 
+), 
+region_avg AS ( 
+    SELECT region_name, AVG(revenue) AS avg_revenue 
+    FROM store_rev 
+    GROUP BY region_name 
+) 
+SELECT sr.store_name, sr.region_name, sr.revenue, ra.avg_revenue, 
+       CASE WHEN sr.revenue > ra.avg_revenue THEN 'Above avg' ELSE 'Below Avg' END AS status 
+FROM store_rev sr 
+JOIN region_avg ra ON sr.region_name = ra.region_name;
