@@ -1,0 +1,18 @@
+SELECT
+r.region_name,
+SUM(sl.quantity*p.unit_price) As Revenue
+
+FROM
+sales sl
+
+JOIN
+stores st ON st.store_id = sl.store_id
+JOIN
+regions r ON r.region_id= st.region_id
+JOIN
+products p ON p.product_id = sl.product_id
+
+GROUP BY r.region_name
+ORDER BY Revenue DESC
+
+
