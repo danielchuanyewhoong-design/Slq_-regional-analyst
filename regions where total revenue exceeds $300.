@@ -1,0 +1,13 @@
+SELECT
+r.region_name,
+SUM(sl.quantity*p.unit_price) AS Total_Revenue
+
+FROM
+sales sl
+Join stores st ON st.store_id = sl.store_id
+JOIN regions r ON st.region_id = r.region_id
+JOIN products p ON sl.product_id = p.product_id
+
+GROUP BY r.region_name
+HAVING
+SUM(sl.quantity*p.unit_price) >300
