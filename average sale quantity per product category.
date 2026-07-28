@@ -1,0 +1,11 @@
+SELECT
+p.category,
+AVG(sl.quantity) AS Average
+
+FROM
+products p
+
+JOIN
+sales sl ON sl.product_id = p.product_id
+
+GROUP BY p.category
