@@ -1,0 +1,13 @@
+SELECT
+st.store_name,
+p.product_name,
+(sl.quantity*p.unit_price) As revenue 
+
+FROM
+stores st
+
+JOIN
+sales sl ON st.store_id = sl.store_id
+JOIN
+products p ON sl.product_id = p.product_id
+
