@@ -1,0 +1,13 @@
+/*stores located in the "South" region.*/
+
+SELECT
+s.*
+FROM
+stores s
+
+JOIN
+regions r ON s.region_id = r.region_id
+WHERE
+
+r.region_name = 'South'
+
