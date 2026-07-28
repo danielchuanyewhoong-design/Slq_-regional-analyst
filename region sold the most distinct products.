@@ -1,0 +1,14 @@
+SELECT
+r.region_name ,
+COUNT (DISTINCT sl.product_id) AS Distnct_Products
+
+FROM
+sales sl
+
+JOIN
+stores st ON st.store_id = sl.store_id
+JOIN
+regions r ON r.region_id = st.region_id
+GROUP BY r.region_name
+ORDER BY Distnct_Products DESC
+LIMIT 1
