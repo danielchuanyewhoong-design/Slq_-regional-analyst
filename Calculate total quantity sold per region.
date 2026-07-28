@@ -1,0 +1,12 @@
+SELECT
+r.region_name,
+SUM(sl.quantity) AS Total_quantity
+
+FROM
+sales sl 
+
+JOIN
+stores st ON st.store_id = sl.store_id
+JOIN
+regions r ON st.region_id = r.region_id
+GROUP BY r.region_name
