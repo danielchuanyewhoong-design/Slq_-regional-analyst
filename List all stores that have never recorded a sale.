@@ -1,0 +1,9 @@
+SELECT
+st.*
+
+FROM
+stores st
+
+Left JOIN sales sl ON st.store_id = sl.store_id
+
+WHERE sale_id = 0
