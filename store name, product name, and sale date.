@@ -1,0 +1,12 @@
+SELECT
+st.store_name,
+p.product_name,
+sl.sale_date
+
+FROM
+sales sl
+
+JOIN
+stores st ON st.store_id = sl.store_id
+JOIN
+products p ON sl.product_id = p.product_id
