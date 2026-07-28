@@ -1,0 +1,9 @@
+/*products in the "Fitness" category, ordered by price descending.*/
+SELECT
+*
+FROM products
+
+WHERE
+category = 'Fitness'
+
+ORDER BY unit_price DESC
