@@ -1,0 +1,26 @@
+CREATE TABLE regions (
+    region_id     INT PRIMARY KEY,
+    region_name   VARCHAR(50)
+);
+
+CREATE TABLE stores (
+    store_id      INT PRIMARY KEY,
+    store_name    VARCHAR(50),
+    city          VARCHAR(50),
+    region_id     INT REFERENCES regions(region_id)
+);
+
+CREATE TABLE products (
+    product_id    INT PRIMARY KEY,
+    product_name  VARCHAR(50),
+    category      VARCHAR(30),
+    unit_price    DECIMAL(10,2)
+);
+
+CREATE TABLE sales (
+    sale_id       INT PRIMARY KEY,
+    store_id      INT REFERENCES stores(store_id),
+    product_id    INT REFERENCES products(product_id),
+    sale_date     DATE,
+    quantity      INT
+);
